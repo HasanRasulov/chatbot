@@ -211,6 +211,68 @@
       </category>    
   </topic>
   
+  
+  <topic name="Statements">
+      
+      
+      
+      
+      <category>
+          <pattern>ask me question</pattern>
+          
+          <template>
+              <random>
+                  <li>
+                      <think><set name="question">while and do while</set></think>
+                      What is difference between while adn do while
+                   </li>
+                  <li>
+                      <think><set name="question">true</set></think>
+                      what is result of while(true);
+                  </li>
+                  <li>
+                      <think><set name="question">for and while</set></think>
+                      what is difference between for and while  
+                  </li>
+                  <li>
+                      <think><set name="question">loop</set></think>
+                      how can we create a loop without while,for and do while statements 
+                  </li>
+              </random>
+          </template>
+              
+          
+      </category>
+      
+      
+      <category>
+          <pattern>My answer is *</pattern>
+          <template>
+              <think><set name="answer"><star/></set></think>
+              <condition name="question">
+                  <li value="unknown" >
+                      You should answer it.If you need help just write Yes 
+                  </li>
+                  <li value="while and do while">
+                     You answer is <get name="answer"/>.Actual answer is that while first checks the condition then do operation but do while do process in reverse order
+                  </li>
+                    <li value="true">
+                     You answer is <get name="answer"></get> .Actual answer is infinite loop.  
+                  </li>
+                    <li value="for and while">
+                       You answer is <get name="answer"></get>.Actual answer is only syntax
+                  </li>
+                    <li value="loop">
+                       You answer is <get name="answer"></get>.Actual answer is that we can create a loop with goto.
+                  </li>
+              </condition>
+          </template>
+      </category>
+      
+      
+      
+  </topic>
+  
    <category>
        <pattern>I want to change the topic to *</pattern>
        <template>
