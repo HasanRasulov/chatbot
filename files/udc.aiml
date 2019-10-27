@@ -5,26 +5,268 @@
    </category>
    
    <category>
-      <pattern>HELLO *</pattern>
+      <pattern>Hi *</pattern>
       <template>
         <random>
-            <li>Hello,What is your name</li>
-            <li>Hi,What is your name</li>
+            <li><uppercase>Hello,What is your name</uppercase></li>
+           <li> <lowercase>Hi,What is your name</lowercase></li>
             <li>Hi there,What is your name</li>
-            <li>I am glad to see you,What is your name</li>
+            <li><explode>I am glad to see you,What is your name</explode></li>
         </random>
       </template>
    </category>
    
    <category>
        <pattern>My name is * *</pattern>
-       <pattern>* *</pattern>
-       <pattern>*</pattern>
        <template>Nice to meet you  
              <set name="name"> <star index="1"/> </set>  
              <set name="surname"><star index="2"/> </set>
         </template>
    </category>
    
+   <category>
+       <pattern>What is my name</pattern>
+       <template>
+           <condition name="name">
+               <li value="unknown">I dont know your name yet</li>
+               <li>Your name is <get name="name"></get></li>
+           </condition>
+        </template>
+   </category>
    
+   <category>
+       <pattern>What is my surname</pattern>
+       <template>
+           <condition name="surname">
+               <li value="unknown">I dont know your name yet</li>
+               <li>Your surname is <get name="surname"></get></li>
+           </condition>
+       </template>
+   </category>
+   
+  
+   <category>
+       <pattern>What is your name</pattern>
+       <template>My name is <bot name="bot_name"/></template>
+   </category>
+  
+  
+  <category>
+      <pattern>What is your purpose</pattern>
+      <template>
+          Actually,My purpose is teaching programming to you,is it usefull for you
+       </template>
+  </category>
+   
+  <category>
+      <pattern>Yes.I want to learn</pattern>
+      <template>Okay You have to choose a topic.From this list:
+      
+      
+          1)Basic operators,
+          2)Statements,
+          3)Compilation phrases,
+          4)OOP,
+          5)Generic programming,
+          6)Functional programming.
+      
+      
+      </template>
+  </category>
+  
+  <category>
+      <pattern>My choice is *</pattern>
+      <template>
+          <think><set name="topic"><star index="1"></star></set> </think>
+          It is good decison to choose <get name="topic"></get>
+      </template>
+  </category>
+  
+  
+  
+  <topic name="OOP">
+    <category>
+      <pattern>ASK ME QUESTION</pattern>
+      
+      <template>
+          What is
+          <random>
+                  <li>
+                       <set name="answer"> abstraction </set>
+                   </li>
+                  <li>
+                         <set name="answer"> inheritance </set>
+                  </li>
+                  <li>
+                         <set name="answer"> polymorphism </set>
+                  </li>
+                  <li>
+                         <set name="answer"> encapsulation </set>    
+                  </li>
+          </random>
+          If you need help write Yes
+       </template>
+    </category>  
+    
+    <category>
+        
+        <pattern>Yes</pattern>
+        <template>
+            <link>
+               <text>Click Here for Help!!!</text> 
+               <url>https://en.wikipedia.org/wiki/<get name="answer"></get></url>
+            </link>
+        </template>
+    </category>
+    
+  </topic>
+  
+  <topic name="Basic operators">
+      
+      <category>
+          <pattern>ASK ME QUESTION</pattern>
+          <template>
+              <random>
+                  <li>
+                      <think><set name="question">right and left shift</set></think>
+                      What is a purpose of right and left shift operators 
+                   </li>
+                  <li>
+                      <think><set name="question">~</set></think>
+                      if we apply ~ operator to this binary value 10101010 what will be result 
+                  </li>
+                  <li>
+                      <think><set name="question">i++</set></think>
+                      int i=0;i++ + ++i printf("%d",i); 
+                  </li>
+                  <li>
+                      <think><set name="question">address</set></think>
+                      what is operator for obtaining address of variable 
+                  </li>
+              </random>
+              If you need help write Yes
+          </template>
+      </category>
+      
+      <category>
+          <pattern>My answer is *</pattern>
+          <template>
+              <think><set name="answer"><star/></set></think>
+              <condition name="question">
+                  <li value="unknown" >
+                      You should answer it.If you need help just write Yes 
+                  </li>
+                  <li value="right and left shift">
+                     You answer is <get name="answer"/>.Actual answer is that these operators just shift specified bit in sequence .
+                  </li>
+                    <li value="~">
+                     You answer is <get name="answer"></get> .Actual answer is 01010101.  
+                  </li>
+                    <li value="i++">
+                       You answer is <get name="answer"></get>.Actual answer is undefined behaviour
+                  </li>
+                    <li value="address">
+                       You answer is <get name="answer"></get>.Actual answer is .
+                  </li>
+              </condition>
+          </template>
+      </category>
+      
+ 
+  <category>
+          <pattern>Yes</pattern>
+          <template>
+              <condition name="question">
+                  
+                  <li value="right and left shift">
+                      <link>
+                          <text>Click Here for Help</text>
+                          <url>www.google.com?q=right+and+left+shift</url>
+                      </link>
+                  </li>
+                  
+                  <li value="~">
+                      <link>
+                          <text>Click Here for Help</text>
+                          <url>www.google.com?q=bitwise+complement</url>
+                      </link>
+                  </li>
+                  
+                  <li value="address">
+                      <link>
+                          <text>Click Here for Help</text>
+                          <url>www.google.com?q=address+of+operator</url>
+                      </link>
+                  </li>
+                  
+                  <li value="i++">
+                      <link>
+                          <text>Click Here for Help</text>
+                          <url>www.google.com?q=postfix+increment</url>
+                      </link>
+                  </li>
+                
+              </condition>
+          </template>
+      </category>    
+  </topic>
+  
+   <category>
+       <pattern>I want to change the topic to *</pattern>
+       <template>
+           <think><set name="topic"><star/></set></think>
+           You will be questioned about <get name="topic"/>
+       </template>
+   </category>
+  
+   <category>
+       <that>Actually,My purpose is teaching programming to you,is it usefull for you</that>
+       <pattern>No</pattern>
+       <template>
+           Okay,We can talk about meal.
+       </template>
+   </category>
+   
+   <category>
+       <pattern>* I want to talk about *</pattern>
+       <template>
+           <think><set name="topic"><star index="2"></star></set> </think>
+           Ok,lets talk about <get name="topic"></get>
+       </template>
+   </category>
+   
+ <topic name="meal">
+   <category>
+       <pattern>Do  you like it</pattern>
+       <template>
+           <condition name="it">
+               <li value="unknown">what do i like</li>
+               <li><srai>Do you like <get name="it"></get></srai></li>
+           </condition>
+       </template>
+   </category>
+       
+       <category>
+           <pattern>I like *</pattern>
+           <template>
+               <think><set name="it"><star index="1"></star></set></think>
+           </template>
+       </category>
+       
+       <category>
+           <pattern>Do you like spagetti</pattern>
+           <template>yeah.When it smells</template>
+       </category>
+       
+       <category>
+           <pattern>Do you like cold beer</pattern>
+           <template>yeah in summer</template>
+       </category>
+       
+       <category>
+           <pattern>Do you like *</pattern>
+           <template>I dont know <star/> Tell me about it</template>
+       </category>
+       
+ </topic>
 </aiml>
